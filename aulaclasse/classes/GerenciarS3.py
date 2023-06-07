@@ -27,3 +27,13 @@ class GerenciarS3:
             print(f'Arquivo {nome_arquivo} excluído do S3 com sucesso.')
         except Exception as e:
             print(f'Erro ao excluir o arquivo do S3: {e}')
+            
+    def upload_arquivo(self, caminho_arquivo, nome_arquivo=None):
+        if nome_arquivo is None:
+            nome_arquivo = caminho_arquivo
+            
+        try:
+            self.s3.upload_file(caminho_arquivo, self.nome_bucket, nome_arquivo)
+            print(f'Arquivo {nome_arquivo} enviado para o s3 com sucesso.')
+        except Exception as e:
+            print(f'Erro ao enviar o arquivo para o S3: {e}')
