@@ -37,3 +37,11 @@ class GerenciarS3:
             print(f'Arquivo {nome_arquivo} enviado para o s3 com sucesso.')
         except Exception as e:
             print(f'Erro ao enviar o arquivo para o S3: {e}')
+            
+    def download_arquivo(self, nome_arquivo, caminho_arquivo):
+        try:
+            caminho_completo = os.path.join(caminho_arquivo, nome_arquivo)
+            self.s3.download_file(self.nome_bucket, nome_arquivo, caminho_completo)
+            print(f'Arquivo {nome_arquivo} baixado do S3 com sucesso.')
+        except Exception as e:
+            print(f'Erro ao baixar o arquivo do S3: {e}')
